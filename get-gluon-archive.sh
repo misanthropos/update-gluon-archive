@@ -25,7 +25,7 @@ idx=0
 until sha256sum --status -c ${SHAFILE} ; do
     wget -c "${ARCHSITE}/${ARCHFILE}"
     ((idx++))
-    if [ $idx == 3 ]; then
+    if [ $idx == ${MAXRETRIES} ]; then
         echo "Failed to download archive ${ARCHFILE}" >&2
         exit 1
     fi
