@@ -20,7 +20,7 @@ SHAFILE=${GLUONARCHIVE}.sha256sum
 cd "${WORKDIR}"
 
 if  ! (diff -N -q <(wget -q -O -  "${ARCHSITE}/${SHAFILE}")  "${SHAFILE}") ; then
-    wget "${ARCHSITE}/${SHAFILE}" -O ${SHAFILE}
+    wget -q "${ARCHSITE}/${SHAFILE}" -O ${SHAFILE} && cat ${SHAFILE}
 else
     #echo "No new Archive! Testing local archive."
     if (sha256sum --status -c ${SHAFILE}); then
