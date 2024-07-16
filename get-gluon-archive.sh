@@ -17,7 +17,9 @@ fi
 
 MAXRETRIES=3
 SHAFILE=${GLUONARCHIVE}.sha256sum
-cd "${WORKDIR}"
+if ! (cd "${WORKDIR}") then
+   exit
+fi
 
 if  ! (diff -N -q <(wget -q -O -  "${ARCHSITE}/${SHAFILE}")  "${SHAFILE}") ; then
     wget -q "${ARCHSITE}/${SHAFILE}" -O ${SHAFILE} && cat ${SHAFILE}
